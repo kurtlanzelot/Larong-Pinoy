@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larong Pinoy</title>
+    <style>
+        @font-face {
+            font-family: 'HARDSIGNED Layered';
+            src: url('HARDSIGNED_Layered.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Cubao';
+            src: url('https://fonts.googleapis.com/css2?family=Cubao&display=swap');
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-image: url(headerbg.jpg);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1, #initial-content h2, #references-pad h2, #assessment-tools h2 {
+            font-family: 'HARDSIGNED Layered', sans-serif;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-section h3, .how-to-play h4, .table-of-contents h4 {
+            font-family: 'Cubao', sans-serif;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #eee;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        nav ul li a.active {
+            background-color: #ffde59;
+            color: #000;
+            border-color: #ffde59;
+        }
+
+        nav ul li a:hover {
+            background-color: #ffde59;
+            color: #000;
+            border-color: #ffde59;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .game-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background-color: rgba(51, 51, 51, 0.8);
+        }
+
+        .game-section h3 {
+            color: #f06292;
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-description {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #ddd;
+        }
+
+        .game-image {
+            width: 300px;
+            height: 225px;
+            object-fit: cover;
+            display: block;
+            margin: 15px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .how-to-play h4 {
+            color: #4caf50;
+            margin-top: 20px;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .how-to-play ol {
+            padding-left: 30px;
+            margin-bottom: 15px;
+            list-style-type: decimal;
+            color: #ddd;
+        }
+
+        .how-to-play li {
+            margin-bottom: 8px;
+        }
+
+        .how-to-play b {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #references-pad {
+            background-color: rgba(34, 34, 34, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #references-pad ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #references-pad ul li {
+            margin-bottom: 10px;
+        }
+
+        #references-pad ul li a {
+            color: #81d4fa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #references-pad ul li a:hover {
+            text-decoration: underline;
+            color: #4fc3f7;
+        }
+
+        footer {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+
+        #home {
+            background-image: url(headbackround.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 60px 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        #initial-content {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #initial-content p {
+            color: #ddd;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #enter-button, .home-button {
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            margin: 30px auto;
+        }
+
+        #enter-button:hover, .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #enter-button::before, .home-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        #enter-button:active::before, .home-button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        .home-button {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        h2 {
+            color: #00bcd4;
+            font-weight: bold;
+        }
+
+        nav ul {
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            text-align: center;
+        }
+
+        nav ul li a.active, nav ul li a:hover {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        #export-links {
+            display: none !important;
+        }
+
+        #assessment-tools ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #assessment-tools li {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(51, 51, 51, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #assessment-tools li a.resource-link {
+            color: #81d4fa;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #assessment-tools li a.resource-link:hover {
+            background-color: #444;
+            text-decoration: none;
+            color: #b3e5fc;
+        }
+
+        .table-of-contents {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .table-of-contents h4 {
+            color: #fdd835;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.5em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .table-of-contents ul li {
+            margin-bottom: 8px;
+        }
+
+        .table-of-contents ul li a {
+            color: #81d4fa;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .table-of-contents ul li a:hover {
+            color: #b3e5fc;
+            text-decoration: underline;
+        }
+
+        .tab-content {
+            background-image: url('tab_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LARONG PINOY</h1>
+        <p>Relive cherished memories and learn about the unique play traditions of the Philippines.</p>
+    </header>
+
+    <main id="main-content">
+        <section id="home" class="tab-content active">
+            <div id="initial-content">
+                <h2>Mabuhay! Welcome to Larong Pinoy</h2>
+                <p>Embark on a nostalgic journey through the heart of Philippine culture with our collection of traditional games. Discover the joy, history, and community spirit behind these timeless Filipino pastimes. Click the button below to explore the games!</p>
+                <button id="enter-button" onclick="showNavigation()">Explore Games</button>
+            </div>
+        </section>
+
+        <nav id="navigation-tabs" style="display: none;">
+            <ul>
+                <li><a href="#" onclick="showTab('single-player-games')"><span class="module-title">SINGLE PLAYER</span></a></li>
+                <li><a href="#" onclick="showTab('dual-player-games')"><span class="module-title">DUAL PLAYER</span></a></li>
+                <li><a href="#" onclick="showTab('team-games')"><span class="module-title">TEAM</span></a></li>
+                <li><a href="#" onclick="showTab('assessment-tools')"><span class="module-title">ASSESSMENT</span></a></li>
+                <li><a href="#" onclick="showTab('references-pad')">REFERENCES</a></li>
+            </ul>
+        </nav>
+
+        <section id="assessment-tools" class="tab-content" style="padding: 30px;">
+            <h2>ASSESSMENT</h2>
+            <p>Test your knowledge about the Engaging, Fun and Cultural Philippine Traditional Games!</p>
+            <ul>
+                <li><a href="https://forms.gle/SmbYkz2N7cvEgFRMA" class="resource-link" target="_blank">SINGLE PLAYER TRADITIONAL GAMES Assessment</a></li>
+                <li><a href="https://forms.gle/k6MTBfefEjASKzEi7" class="resource-link" target="_blank">DUAL PLAYER TRADITIONAL GAMES Assessment</a></li>
+                <li><a href="https://forms.gle/SrpofNsJKKQ3LPdM7" class="resource-link" target="_blank">TEAM TRADITIONAL GAMES Assessment</a></li>
+            </ul>
+            <button class="home-button" onclick="showHome()">Back to Home</button>
+        </section>
+
+        <div id="single-player-games" class="tab-content">
+            <h2>SINGLE PLAYER GAMES</h2>
+            <p>Philippine Traditional Games you can play on your own! </p>
+
+            <div class="table-of-contents">
+                <h4>Jump to Game</h4>
+                <ul>
+                    <li><a href="#game-1-single">Trumpo</a></li>
+                    <li><a href="#game-2-single">Holen</a></li>
+                    <li><a href="#game-3-single">Sipa</a></li>
+                </ul>
+            </div>
+
+            <section id="game-1-single" class="game-section">
+                <h3>GAME 1: Trumpo</h3>
+                <p class="game-description">A classic Filipino game of skill and balance. Try to keep it spinning as long as you can!<br> a traditional Filipino spinning top. It's a popular toy and game, especially among children, and holds cultural significance in the Philippines.</p>
+                <a href="S1.jpg" target="_blank"><img src="S1.jpg" alt="Game 1" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Tightly wrap the string around the trumpo's body, starting from the tip.</li>
+                        <li>Throw the trumpo downwards with a wrist flick, releasing the string to make it spin on its tip.</li>
+                        <li>The goal is to keep the trumpo spinning for as long as possible.</li>
+                        <li><b>Game Variations:</b>
+                            <br>-Spinning contests: Longest spin wins.
+                            <br>-Target games: Hit opponents' spinning trumpo.
+                            <br>-Tricks: Perform maneuvers with the spinning top.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-2-single" class="game-section">
+                <h3>GAME 2: Holen </h3>
+                <p class="game-description">Test your aim and precision in this fun solo activity. Knock down the target with your throws! <br> In the single-player variant, the player practices their aim by hitting stationary target marbles.</p>
+                <a href="S2.jpg" target="_blank"><img src="S2.jpg" alt="Game 2" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Arrange a set of marbles as stationary targets.</li>
+                        <li>Use a "shooter" marble.</li>
+                        <li>Aim and flick the "shooter" marble to hit the target marbles.</li>
+                        <li>Practice hitting specific targets or clearing all targets.</li>
+                        <li>Variations can include creating obstacle courses or aiming for marbles placed at varying distances.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-3-single" class="game-section">
+                <h3>GAME 3: Sipa</h3>
+                <p class="game-description"> Sipa involves kicking a shuttlecock made of a washer with colorful threads. The goal is to keep it in the air for as long as possible using your feet, knees, or other body parts (except hands). Players count how many consecutive kicks they can do.</p>
+                <a href="S3.jpg" target="_blank"><img src="S3.jpg" alt="Game 3" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Start by holding the "sipa" (shuttlecock).</li>
+                        <li>Toss it slightly upwards.</li>
+                        <li>Kick the "sipa" with your foot, knee, or other allowed body part to keep it airborne.</li>
+                        <li>Continue kicking it, trying to maintain a continuous flow.</li>
+                        <li>Count each successful kick.</li>
+                    </ol>
+                </div>
+            </section>
+            <button class="home-button" onclick="showHome()">Back to Home</button>
+        </div>
+
+        <div id="dual-player-games" class="tab-content">
+            <h2>DUAL PLAYER GAMES</h2>
+            <p>Philippine Traditional Games you can play with a partner!</p>
+
+            <div class="table-of-contents">
+                <h4>Jump to Game</h4>
+                <ul>
+                    <li><a href="#game-1-dual">Jack n' Poy</a></li>
+                    <li><a href="#game-2-dual">Pitik Bulag</a></li>
+                    <li><a href="#game-3-dual">Tsato</a></li>
+                    <li><a href="#game-4-dual">Dama (Filipino Checkers)</a></li>
+                    <li><a href="#game-5-dual">Holen</a></li>
+                </ul>
+            </div>
+
+            <section id="game-1-dual" class="game-section">
+                <h3>GAME 1: Jack n' Poy </h3>
+                <p class="game-description">Basically the Filipino version of Rock, Paper, Scissors. It's a really easy hand game where you try to outsmart your friend by throwing either a rock, paper, or scissors at the same time.</p>
+                <a href="D1.jpg" target="_blank"><img src="D1.jpg" alt="Game 1" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Players say "Jack-en-Poy!" together.</li>
+                        <li> At the same time, each player shows one hand gesture:
+                            <br>- <b>Rock:</b> A closed fist.
+                            <br>- <b>Paper:</b> A flat, open hand
+                            <br>- <b>Scissors:</b> Two fingers extended in a "V" shape.
+                        </li>
+                        <li>Determine the winner of the round based on these rules:
+                            <br>- <b>Rock</b> beats <b>Scissors</b>.
+                            <br>- <b>Scissors</b> beats <b>Paper</b>.
+                            <br>- <b>Paper</b> beats <b>Rock</b>.
+                        </li>
+                        <li>If both players show the same hand gesture, it's a tie. Play another round in case of a tie.</li>
+                        <li>Continue playing rounds.</li>
+                        <li>The player who wins more rounds overall is the winner of the game.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-2-dual" class="game-section">
+                <h3>GAME 2: Pitik Bulag</h3>
+                <p class="game-description">Traditional Filipino game, involves two players, one with eyes covered, and the other flicks a finger on the hand covering the eyes. The "blind" player tries to guess which finger was used to flick them, and if correct, they switch roles.</p>
+                <a href="D2.jpg" target="_blank"><img src="D2.jpg" alt="Game 2" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>One player covers their eyes and becomes the "blind" player.</li>
+                        <li>The other player gently flicks one of their fingers against the hand covering the "blind" player's eyes.</li>
+                        <li>The "blind" player then tries to guess which finger was flicked.</li>
+                        <li><b>If the guess is correct:</b>
+                            <br>The players switch roles. The "blind" player now becomes the flicker, and the flicker becomes the "blind" player.</li>
+                        <li><b>If the guess is incorrect:</b>
+                            <br>The same players continue.
+                            <br>The "blind" player keeps their eyes covered.
+                            <br>The other player flicks a finger again.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-3-dual" class="game-section">
+                <h3>GAME 3: Tsato </h3>
+                <p class="game-description">Traditional Filipino stick game that tests players' hand-eye coordination. Players use two sticks, one longer than the other, to hit a small piece of wood that's partially buried in a slanted hole</p>
+                <a href="D3.jpg" target="_blank"><img src="D3.jpg" alt="Game 3" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Create a slanted hole in the ground.</li>
+                        <li>Place a small stick across the opening of the hole.</li>
+                        <li>One player takes their turn.</li>
+                        <li>Using a bigger stick, the player hits the small stick out of the hole.</li>
+                        <li>While the small stick is in the air, the same player tries to hit it again with the bigger stick, aiming to make it travel as far as possible.</li>
+                        <li>If the small stick is caught by another player after being hit out of the hole or while airborne, the current player gets no points for that turn.</li>
+                        <li>Measure the distance the small stick traveled using the length of the bigger stick as a unit of measurement.</li>
+                        <li>Players take turns performing these steps.</li>
+                        <li>The player who hits the small stick the farthest (accumulating the most distance over agreed-upon rounds or a single successful hit) wins the game.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-4-dual" class="game-section">
+                <h3>GAME 4: Dama (Filipino Checkers)</h3>
+                <p class="game-description">A traditional Filipino board game, similar to checkers, played on an 8x8 checkered board. It's a game of strategy, requiring players to capture all of their opponent's</p>
+                <a href="D4.jpg" target="_blank"><img src="D4.jpg" alt="Game 4" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Each player starts with 12 pieces.</li>
+                        <li>Place the pieces on the dark squares of your side of the board.</li>
+                        <li>Players take turns moving one of their pieces.</li>
+                        <li>Pieces can only move diagonally forward one square at a time.</li>
+                        <li>If an opponent's piece is diagonally adjacent to your piece and there is an empty dark square immediately beyond it in the same diagonal direction, you must jump over the opponent's piece.</li>
+                        <li>The jumped opponent's piece is captured and removed from the board.</li>
+                        <li>If after a jump, another opponent's piece is in a position to be jumped (in any forward diagonal direction), you must continue jumping in the same turn. Multiple jumps are allowed in a single turn.</li>
+                        <li>When one of your pieces reaches the last row (the opponent's starting side) of the board, it becomes a "king."</li>
+                        <li>A king is typically indicated by placing another piece of the same color on top of it.</li>
+                        <li>Kings can move diagonally forward or backward one square at a time.</li>
+                        <li>Kings can also jump and capture opponent's pieces diagonally forward or backward, and continue multiple jumps in any diagonal direction.</li>
+                        <li>The first player to capture all of their opponent's pieces wins the game.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-5-dual" class="game-section">
+                <h3>GAME 5: Holen </h3>
+                <p class="game-description">A Filipino marble game, is a one-on-one game where players use a "shooter" marble to knock their opponent's marbles out of a designated circle, with the player collecting the marbles they successfully remove.</p>
+                <a href="D5.jpg" target="_blank"><img src="D5.jpg" alt="Game 5" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Each player chooses one marble to be their "shooter.".</li>
+                        <li>The remaining marbles are placed inside a drawn circle on the ground.</li>
+                        <li>Players take turns flicking their shooter marble.</li>
+                        <li>Aim your shooter to hit other marbles out of the circle. Each marble knocked out is won by the player who shot it.</li>
+                        <li>You can also try to hit another player's shooter marble with your own. If you successfully hit their shooter, you typically win one of their marbles (this rule can be agreed upon beforehand).</li>
+                        <li>Rules for continuing a turn after a successful hit can vary. Sometimes a player gets to shoot again if they knock a marble out. Agree on this before starting.</li>
+                        <li>The game ends when all the marbles are knocked out of the circle.</li>
+                        <li>The player who has collected the most marbles at the end of the game is the winner.</li>
+                    </ol>
+                </div>
+            </section>
+            <button class="home-button" onclick="showHome()">Back to Home</button>
+        </div>
+
+        <div id="team-games" class="tab-content">
+            <h2>TEAM GAMES</h2>
+            <p>Experience the fun of Philippine traditional games with your team!</p>
+
+            <div class="table-of-contents">
+                <h4>Jump to Game</h4>
+                <ul>
+                    <li><a href="#game-1-team">Patintero</a></li>
+                    <li><a href="#game-2-team">Luksong Tinik</a></li>
+                    <li><a href="#game-3-team">Langit-Lupa</a></li>
+                    <li><a href="#game-4-team">Chinese Garter</a></li>
+                    <li><a href="#game-5-team">Agawan Base</a></li>
+                    <li><a href="#game-6-team">Habulan</a></li>
+                    <li><a href="#game-7-team">Bahay-Bahayan</a></li>
+                    <li><a href="#game-8-team">Piko</a></li>
+                    <li><a href="#game-9-team">Pabitin</a></li>
+                    <li><a href="#game-10-team">Agawan Panyo</a></li>
+                </ul>
+            </div>
+
+            <section id="game-1-team" class="game-section">
+                <h3>GAME 1: Patintero</h3>
+                <p class="game-description">Patintero is a popular Filipino game involving two teams, but it can also be played by two players. The objective is to avoid being tagged while crossing the "grid" lines.</p>
+                <a href="T1.jpg" target="_blank"><img src="T1.jpg" alt="Game 1" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>One player is designated as the tagger.</li>
+                        <li>The other player(s) are the runners.</li>
+                        <li>A grid of lines is drawn on the ground.</li>
+                        <li>The runners try to cross the grid lines without being tagged by the tagger.</li>
+                        <li>The tagger tries to catch the runners while they are crossing the lines.</li>
+                        <li>If all the runner on the team is tagged, they might become the new tagger</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-2-team" class="game-section">
+                <h3>GAME 2: Luksong Tinik</h3>
+                <p class="game-description">Jumping game where one player or group raises their feet to create "thorns" and the other players must jump over them.</p>
+                <a href="T2.jpg" target="_blank"><img src="T2.jpg" alt="Game 2" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Players sit on the ground, extending their legs forward.</li>
+                        <li>One player starts by slightlsy raising their feet (these are the initial "thorns").</li>
+                        <li>The other players take turns jumping over the raised feet. They must jump cleanly without touching the feet.</li>
+                        <li>If a player successfully jumps over the feet without touching, they proceed to the next round.</li>
+                        <li>After each successful round where all players have jumped, the player whose feet are being jumped over raises their feet a little higher.</li>
+                        <li>The players continue taking turns jumping over the increasingly higher feet.</li>
+                        <li>If a player, during their jump, touches the raised feet, they are eliminated from the game.</li>
+                        <li>The game continues until only one player remains who has successfully jumped over all the raised foot heights. That player is the winner.</li>
+                        <li>If all players fail to jump without touching the raised feet, there is no winner, and they typically restart the game.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-3-team" class="game-section">
+                <h3>GAME 3: Langit-Lupa </h3>
+                <p class="game-description">Game of tag where players have to avoid being tagged, but certain areas called "langit" (heaven) are safe zones.</p>
+                <a href="T3.jpg" target="_blank"><img src="T3.jpg" alt="Game 3" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>One player is designated as "it" (the tagger).</li>
+                        <li>The other players are the runners.</li>
+                        <li>There are designated safe zones called "langit".</li>
+                        <li>Runners can be safe from being tagged when they are in the "langit" zones.</li>
+                        <li>The player who is "it" tries to tag the runners who are not in the "langit" zones.</li>
+                        <li>Once a runner is tagged, they become the new "it".</li>
+                        <li>The game continues with the new "it" chasing the other players.</li>
+                        <li>The size and number of "langit" zones can be decided before the game starts.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-4-team" class="game-section">
+                <h3>GAME 4: Chinese Garter </h3>
+                <p class="game-description">Jumping game involving an elastic garter that is held by two players. The object of the game is to jump over the garter without touching it.</p>
+                <a href="T4.jpg" target="_blank"><img src="T4.jpg" alt="Game 4" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Two players hold the garter at ankle level.</li>
+                        <li>Other players take turns jumping over the garter.</li>
+                        <li>If a player successfully jumps without touching the garter, the garter is raised higher for the next round.</li>
+                        <li>The garter is raised progressively higher (knee level, waist level, etc.).</li>
+                        <li>If a player touches the garter while jumping, they are eliminated.</li>
+                        <li>The game continues until only one player remains who can successfully jump over the highest level.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-5-team" class="game-section">
+                <h3>GAME 5: Agawan Base </h3>
+                <p class="game-description">Game of tag where two teams try to capture each other's "base."</p>
+                <a href="T5.jpg" target="_blank"><img src="T5.jpg" alt="Game 5" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Divide the players into two teams.</li>
+                        <li>Each team has a designated "base."</li>
+                        <li>The goal is to capture the opposing team's base without being tagged.</li>
+                        <li>Players can tag opponents outside their base.</li>
+                        <li>If a player is tagged, they are "frozen" until a teammate tags them to "unfreeze" them.</li>
+                        <li>The team that captures the opposing team's base wins.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-6-team" class="game-section">
+                <h3>GAME 6: Habulan </h3>
+                <p class="game-description">A simple tag game where one player is "it" and tries to tag the other players.</p>
+                <a href="T6.jpg" target="_blank"><img src="T6.jpg" alt="Game 6" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>One player is chosen to be "it" (the tagger).</li>
+                        <li>The other players run away from "it."</li>
+                        <li>"It" tries to tag the other players.</li>
+                        <li>When a player is tagged, they become the new "it."</li>
+                        <li>The game continues with the new "it" chasing the other players.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-7-team" class="game-section">
+                <h3>GAME 7: Bahay-Bahayan </h3>
+                <p class="game-description">A role-playing game where players pretend to be a family and act out daily life scenarios.</p>
+                <a href="T7.jpg" target="_blank"><img src="T7.jpg" alt="Game 7" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Players assign roles such as mother, father, children, etc.</li>
+                        <li>They create a "house" using available materials (chairs, blankets, etc.).</li>
+                        <li>Players act out daily life scenarios, such as cooking, cleaning, going to work, etc.</li>
+                        <li>The game encourages creativity and imagination.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-8-team" class="game-section">
+                <h3>GAME 8: Piko </h3>
+                <p class="game-description">A hopscotch game where players throw a "pamato" (stone or other object) into numbered squares and hop through the course.</p>
+                <a href="T8.jpg" target="_blank"><img src="T8.jpg" alt="Game 8" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Draw a hopscotch course on the ground.</li>
+                        <li>Players take turns throwing the "pamato" into the first square.</li>
+                        <li>They hop through the course, skipping the square with the "pamato."</li>
+                        <li>On the way back, they pick up the "pamato" and hop out of the course.</li>
+                        <li>If a player completes the course successfully, they throw the "pamato" into the next square.</li>
+                        <li>If a player makes a mistake (steps on a line, misses a square, etc.), their turn is over.</li>
+                        <li>The first player to complete the course wins.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-9-team" class="game-section">
+                <h3>GAME 9: Pabitin </h3>
+                <p class="game-description">A game where prizes are hung on a bamboo structure, and players jump to grab them.</p>
+                <a href="T9.jpg" target="_blank"><img src="T9.jpg" alt="Game 9" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Prizes are hung on a bamboo structure.</li>
+                        <li>Players take turns jumping to grab the prizes.</li>
+                        <li>The bamboo structure is raised higher after each round.</li>
+                        <li>Players who successfully grab a prize are eliminated.</li>
+                        <li>The game continues until all prizes are grabbed.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="game-10-team" class="game-section">
+                <h3>GAME 10: Agawan Panyo </h3>
+                <p class="game-description">A game where two teams try to grab a handkerchief from the center without being tagged.</p>
+                <a href="T10.jpg" target="_blank"><img src="T10.jpg" alt="Game 10" class="game-image"></a>
+                <div class="how-to-play">
+                    <h4>How to Play:</h4>
+                    <ol>
+                        <li>Divide the players into two teams.</li>
+                        <li>Place a handkerchief in the center.</li>
+                        <li>Each team sends one player to try to grab the handkerchief.</li>
+                        <li>The player who grabs the handkerchief tries to return to their team's side without being tagged.</li>
+                        <li>If tagged, the player from the other team gets a point.</li>
+                        <li>The team with the most points wins.</li>
+                    </ol>
+                </div>
+            </section>
+            <button class="home-button" onclick="showHome()">Back to Home</button>
+        </div>
+
+        <section id="references-pad" class="tab-content">
+            <h2>REFERENCES</h2>
+            <ul>
+                <li><a href="https://www.tatakpinoy.net/traditional-filipino-games-laro-ng-lahi/" target="_blank">Tatak Pinoy - Traditional Filipino Games</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Traditional_games_in_the_Philippines" target="_blank">Wikipedia - Traditional Games in the Philippines</a></li>
+                <li><a href="https://www.vigattindeals.com/blog/10-traditional-filipino-games-you-should-introduce-to-your-kids/" target="_blank">Vigattin Deals - 10 Traditional Filipino Games</a></li>
+                <li><a href="https://www.esquiremag.ph/culture/sports/traditional-filipino-games-a00293-20200813-lfrm" target="_blank">Esquire PH - Traditional Filipino Games</a></li>
+                <li><a href="https://www.scribd.com/document/332194682/Larong-Pinoy" target="_blank">Scribd - Larong Pinoy</a></li>
+            </ul>
+            <button class="home-button" onclick="showHome()">Back to Home</button>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2024 LARONG PINOY. All Rights Reserved.
+    </footer>
+
+    <script>
+        const navigationTabs = document.getElementById('navigation-tabs');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const initialContent = document.getElementById('initial-content');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        function hideAllTabs() {
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.display = 'none';
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+
+        function showTab(tabId) {
+            hideAllTabs();
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                selectedTab.style.display = 'block';
+            }
+            navLinks.forEach(link => {
+                if (link.getAttribute('onclick') === `showTab('${tabId}')`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        function showNavigation() {
+            initialContent.style.display = 'none';
+            navigationTabs.style.display = 'flex';
+            navLinks.forEach(link => link.classList.remove('active'));
+            showTab('single-player-games');
+        }
+
+        function showHome() {
+            hideAllTabs();
+            initialContent.style.display = 'block';
+            navigationTabs.style.display = 'none';
+            showTab('home');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('home');
+        });
+    </script>
+</body>
+</html>
